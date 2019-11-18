@@ -1,28 +1,34 @@
+using System.Collections.Generic;
 using Entitas;
-using UnityEngine;
 
 namespace Enemies.Systems
 {
     public class ChangeMovementStateSystem : IExecuteSystem
     {
         private readonly BaseSceneContext.MovementData _data;
-        private readonly GameContext _context;
+        private readonly InputContext _inputContext;
+        private readonly IGroup<GameEntity> _gameGroup;
+        private readonly List<GameEntity> _entities;
 
         public ChangeMovementStateSystem
         (
             BaseSceneContext.MovementData data,
-            GameContext context
+            GameContext gameContext,
+            InputContext inputContext
         )
         {
             _data = data;
-            _context = context;
+            _inputContext = inputContext;
+
+            _entities = new List<GameEntity>();
+            _gameGroup = gameContext.GetGroup(GameMatcher.MovementState);
         }
 
         public void Execute()
         {
-            foreach (var entity in _context.GetGroup(GameMatcher.MovementState).GetEntities())
+            foreach (var entity in _gameGroup.GetEntities(_entities))
             {
-                if (entity.movementState.FinishMovementStateTime <= Time.realtimeSinceStartup)
+                if (entity.movementState.FinishMovementStateTime <= _inputContext.timeSinceStartup.Value)
                 {
                     float delta;
                     if (entity.hasMovement)
@@ -37,7 +43,7 @@ namespace Enemies.Systems
                         entity.ReplaceMovement(direction, speed);
                         delta = _data.MovementTimeRange.GetRandom();
                     }
-                    entity.ReplaceMovementState(Time.realtimeSinceStartup + delta);
+                    entity.ReplaceMovementState(_inputContext.timeSinceStartup.Value + delta);
                 }
             }
         }

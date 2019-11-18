@@ -36,9 +36,10 @@ namespace GameManagers
         public void Tick()
         {
             var deltaTime = Time.deltaTime;
+            var timeSinceStartup = Time.realtimeSinceStartup;
             foreach (var controller in _controllers)
             {
-                if (controller.FinishMovenetStateTime <= Time.realtimeSinceStartup)
+                if (controller.FinishMovenetStateTime <= timeSinceStartup)
                 {
                     float delta;
                     if (controller.IsMoving)
@@ -53,7 +54,7 @@ namespace GameManagers
                         controller.Direction = Helpers.GetRandomAndNormalizeVector3();
                         delta = _data.MovementTimeRange.GetRandom();
                     }
-                    controller.FinishMovenetStateTime = Time.realtimeSinceStartup + delta;
+                    controller.FinishMovenetStateTime = timeSinceStartup + delta;
                 }
                 else
                 {

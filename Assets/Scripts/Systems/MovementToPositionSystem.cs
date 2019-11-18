@@ -3,37 +3,33 @@ using Entitas;
 
 namespace Enemies.Systems
 {
-    public class MovementToPositionSystem : IExecuteSystem, IInitializeSystem
+    public class MovementToPositionSystem : IExecuteSystem
     {
-        private readonly GameContext _context;
         private readonly InputContext _inputContext;
-        private GameEntity[] _entities;
+        private readonly IGroup<GameEntity> _gameGroup;
+        private readonly List<GameEntity> _entities;
 
         public MovementToPositionSystem
         (
-            GameContext context,
+            GameContext gameContext,
             InputContext inputContext
         )
         {
-            _context = context;
             _inputContext = inputContext;
+            
+            _entities = new List<GameEntity>();
+            _gameGroup = gameContext.GetGroup(GameMatcher.Movement);
         }
         
         public void Execute()
         {
-            _entities = _context.GetGroup(GameMatcher.Movement).GetEntities();
-            foreach (var entity in _entities)
+            foreach (var entity in _gameGroup.GetEntities(_entities))
             {
                 var delta = _inputContext.deltaTime.Value * entity.movement.Direction *
                             entity.movement.Speed;
                 var nextPosition = delta + entity.position.GetVector3();
                 entity.ReplacePosition(nextPosition.x, nextPosition.y, nextPosition.z);
             }
-        }
-
-        public void Initialize()
-        {
-//            _entities = _context.GetGroup(GameMatcher.Movement).GetEntities();
         }
     }
 }

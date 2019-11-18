@@ -9,14 +9,17 @@
 public static class InputComponentsLookup {
 
     public const int DeltaTime = 0;
+    public const int TimeSinceStartup = 1;
 
-    public const int TotalComponents = 1;
+    public const int TotalComponents = 2;
 
     public static readonly string[] componentNames = {
-        "DeltaTime"
+        "DeltaTime",
+        "TimeSinceStartup"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Enemies.Components.Input.DeltaTimeComponent)
+        typeof(Enemies.Components.Input.DeltaTimeComponent),
+        typeof(Enemies.Components.Input.TimeSinceStartupComponent)
     };
 }

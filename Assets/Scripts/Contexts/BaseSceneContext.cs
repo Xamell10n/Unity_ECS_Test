@@ -26,25 +26,31 @@ public abstract class BaseSceneContext : ScriptableObjectInstaller
     [Serializable]
     public class SpawnData
     {
-        public int Count;
+        public int Count = 10000;
         public string PrefabName;
-        public Vector3 StartPosition;
-        public Vector3 StartPositionDelta;
-        public float StartAngle;
+        public Vector3 StartPosition = Vector3.zero;
+        public Vector3 StartPositionDelta = Vector3.one * 10;
+        public float StartAngle = 45;
     }
 
     [Serializable]
     public class MovementData
     {
-        public Range SpeedRange;
-        public Range MovementTimeRange;
-        public Range WaitTimeRange;
+        public Range SpeedRange = new Range(2, 4);
+        public Range MovementTimeRange = new Range(2, 4);
+        public Range WaitTimeRange = new Range(0, 3);
 
         [Serializable]
         public class Range
         {
             [SerializeField] private float _min;
             [SerializeField] private float _max;
+
+            public Range(float min, float max)
+            {
+                _min = min;
+                _max = max;
+            }
 
             public float GetRandom()
             {
