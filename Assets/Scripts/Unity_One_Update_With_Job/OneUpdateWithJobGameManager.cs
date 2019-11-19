@@ -20,6 +20,7 @@ namespace GameManagers
         private NativeList<float> _speeds;
         private NativeList<Vector3> _directions;
         private JobHandle _moveHandle;
+        private int _frame;
         
         public OneUpdateWithJobGameManager
         (
@@ -46,7 +47,8 @@ namespace GameManagers
             
             public void Execute(int index, TransformAccess transform)
             {
-                transform.position += Directions[index].normalized * Delta * Speeds[index];
+                if (Speeds[index] > 0)
+                    transform.position += Directions[index].normalized * Delta * Speeds[index];
             }
         }
         
@@ -105,8 +107,7 @@ namespace GameManagers
 
         public void Tick()
         {
-            _moveHandle.Complete();
-            var deltaTime = Time.deltaTime;
+//            var time = Time.realtimeSinceStartup;
             var timeSinceStartup = Time.realtimeSinceStartup;
             for (var i = 0; i < _controllersAll.Count; i++)
             {
@@ -134,6 +135,7 @@ namespace GameManagers
                 _speeds[i] = controller.Speed;
             }
 
+            var deltaTime = Time.deltaTime;
             var job = new MoveJobTransfrom
             {
                 Delta = deltaTime,
@@ -141,7 +143,8 @@ namespace GameManagers
                 Speeds = _speeds
             };
             _moveHandle = job.Schedule(_transforms);
-            JobHandle.ScheduleBatchedJobs();
+            _moveHandle.Complete();
+//            Debug.Log($"Frame = {_frame++}, delta = {Time.realtimeSinceStartup - time}");
         }
 
         public void LateDispose()
