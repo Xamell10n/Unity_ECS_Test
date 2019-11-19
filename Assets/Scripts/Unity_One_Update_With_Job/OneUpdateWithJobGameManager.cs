@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Enemies;
 using Enemies.Base;
 using Enemies.OneUpdate;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace GameManagers
             _transforms = new TransformAccessArray(0, -1);
         }
         
+        [BurstCompile]
         public struct MoveJobTransfrom : IJobParallelForTransform
         {
             public float Delta;

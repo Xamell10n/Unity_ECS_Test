@@ -6,11 +6,11 @@ namespace Enemies.Unity_ECS.Systems
 {
     public class ChangeViewPositionSystem : JobComponentSystem
     {
-        public struct ChangeViewPositionJob : IJobForEach<PositionData, ViewData>
+        public struct ChangeViewPositionJob : IJobParallelForTransform
         {
-            public void Execute(ref PositionData c0, ref ViewData c1)
+            public void Execute(int index, TransformAccess transform)
             {
-                c1.View.transform.position = c0.Value;
+                
             }
         }
 
