@@ -9,6 +9,7 @@ public abstract class BaseSceneContext : ScriptableObjectInstaller
 {
     [SerializeField] protected SpawnData _spawnData;
     [SerializeField] protected MovementData _movementData;
+    [SerializeField] protected CameraData _cameraData;
 
     protected void BindSpawnData<T>() where T : EnemyController.Factory
     {
@@ -21,6 +22,12 @@ public abstract class BaseSceneContext : ScriptableObjectInstaller
             Seed = _spawnData.StartPositionDelta,
             AngleSeed = _spawnData.StartAngle
         }).WhenInjectedInto<T>();
+        Container.InstantiatePrefabResource("MainCamera", new GameObjectCreationParameters
+        {
+            Name = "MainCamera",
+            Position = _cameraData.StartPosition,
+            Rotation = _cameraData.StartRotation
+        });
     }
 
     [Serializable]
@@ -64,5 +71,12 @@ public abstract class BaseSceneContext : ScriptableObjectInstaller
                 return result;
             }
         }
+    }
+    
+    [Serializable]
+    public class CameraData
+    {
+        public Vector3 StartPosition = new Vector3(0, 40, 0);
+        public Quaternion StartRotation = Quaternion.Euler(90, 0 ,0);
     }
 }

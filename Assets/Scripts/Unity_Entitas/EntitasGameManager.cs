@@ -23,7 +23,6 @@ namespace GameManagers
 
             _systems = new Systems()
                 .Add(new UpdateTimeSystem(inputContext))
-                .Add(new UpdateTimeSinceStartupSystem(inputContext))
                 .Add(new ChangeMovementStateSystem(data, gameContext, inputContext))
                 .Add(new MovementToPositionSystem(gameContext, inputContext))
                 .Add(new ChangeViewPositionSystem(gameContext));

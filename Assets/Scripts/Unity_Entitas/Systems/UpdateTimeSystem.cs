@@ -22,7 +22,7 @@ namespace Enemies.Systems
 
         public void Execute()
         {
-            _context.ReplaceDeltaTime(Time.deltaTime);
+            _context.ReplaceTime(Time.deltaTime, Time.realtimeSinceStartup);
         }
     }
 }

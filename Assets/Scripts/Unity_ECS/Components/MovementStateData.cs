@@ -6,8 +6,9 @@ namespace Enemies.Unity_ECS
     [Serializable]
     public struct MovementStateData : IComponentData
     {
-        public float FinishMovementState;
+        public float FinishMovementStateTime;
     }
     
+    [Serializable]
     public class MovementStateComponent : ComponentDataProxy<MovementStateData> { }
 }

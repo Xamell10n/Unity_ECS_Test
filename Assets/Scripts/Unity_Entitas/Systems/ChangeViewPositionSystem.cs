@@ -14,19 +14,19 @@ public class ChangeViewPositionSystem : ReactiveSystem<GameEntity>
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
     {
-        return context.CreateCollector(GameMatcher.Position);
+        return context.CreateCollector(GameMatcher.PositionVector);
     }
 
     protected override bool Filter(GameEntity entity)
     {
-        return entity.hasPosition && entity.hasView;
+        return entity.hasPositionVector && entity.hasView;
     }
 
     protected override void Execute(List<GameEntity> entities)
     {
         foreach (var entity in entities)
         {
-            entity.view.GameObject.transform.position = entity.position.GetVector3();
+            entity.view.GameObject.transform.position = entity.positionVector.Value;
         }
     }
 }

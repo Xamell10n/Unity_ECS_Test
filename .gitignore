@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
+[Ee]ntityCache
 
 # Never ignore Asset meta data
 ![Aa]ssets/**/*.meta
@@ -48,6 +49,7 @@ sysinfo.txt
 
 # Builds
 *.apk
+*.aab
 *.unitypackage
 
 # Crashlytics generated file

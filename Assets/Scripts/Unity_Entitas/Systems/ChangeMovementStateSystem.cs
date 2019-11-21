@@ -28,7 +28,7 @@ namespace Enemies.Systems
         {
             foreach (var entity in _gameGroup.GetEntities(_entities))
             {
-                if (entity.movementState.FinishMovementStateTime <= _inputContext.timeSinceStartup.Value)
+                if (entity.movementState.FinishMovementStateTime <= _inputContext.time.RealTimeSinceStarup)
                 {
                     float delta;
                     if (entity.hasMovement)
@@ -43,7 +43,7 @@ namespace Enemies.Systems
                         entity.ReplaceMovement(direction, speed);
                         delta = _data.MovementTimeRange.GetRandom();
                     }
-                    entity.ReplaceMovementState(_inputContext.timeSinceStartup.Value + delta);
+                    entity.ReplaceMovementState(_inputContext.time.RealTimeSinceStarup + delta);
                 }
             }
         }

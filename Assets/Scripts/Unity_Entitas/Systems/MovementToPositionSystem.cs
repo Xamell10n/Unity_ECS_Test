@@ -25,10 +25,10 @@ namespace Enemies.Systems
         {
             foreach (var entity in _gameGroup.GetEntities(_entities))
             {
-                var delta = _inputContext.deltaTime.Value * entity.movement.Direction *
+                var delta = _inputContext.time.DeltaTime * entity.movement.Direction *
                             entity.movement.Speed;
-                var nextPosition = delta + entity.position.GetVector3();
-                entity.ReplacePosition(nextPosition.x, nextPosition.y, nextPosition.z);
+                var nextPosition = delta + entity.positionVector.Value;
+                entity.ReplacePositionVector(nextPosition);
             }
         }
     }

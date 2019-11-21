@@ -10,7 +10,7 @@ public static class GameComponentsLookup {
 
     public const int Movement = 0;
     public const int MovementState = 1;
-    public const int Position = 2;
+    public const int PositionVector = 2;
     public const int View = 3;
 
     public const int TotalComponents = 4;
@@ -18,14 +18,14 @@ public static class GameComponentsLookup {
     public static readonly string[] componentNames = {
         "Movement",
         "MovementState",
-        "Position",
+        "PositionVector",
         "View"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Enemies.Components.MovementComponent),
         typeof(Enemies.Components.MovementStateComponent),
-        typeof(PositionComponent),
+        typeof(Enemies.Components.PositionVectorComponent),
         typeof(ViewComponent)
     };
 }

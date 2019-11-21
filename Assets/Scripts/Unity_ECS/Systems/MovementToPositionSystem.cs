@@ -1,6 +1,8 @@
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Jobs;
+using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace Enemies.Unity_ECS.Systems
@@ -8,13 +10,13 @@ namespace Enemies.Unity_ECS.Systems
     public class MovementToPositionSystem : JobComponentSystem
     {
         [BurstCompile]
-        struct MovementToPositionJob : IJobForEach<MovementData, PositionData>
+        struct MovementToPositionJob : IJobForEach<MovementData, Translation>
         {
             public float DeltaTime;
             
-            public void Execute(ref MovementData c0, ref PositionData c1)
+            public void Execute(ref MovementData c0, ref Translation c1)
             {
-                c1.Value += c0.Direction.normalized * c0.Speed * DeltaTime;
+                c1.Value += (float3) c0.Direction.normalized * c0.Speed * DeltaTime;
             }
         }
         

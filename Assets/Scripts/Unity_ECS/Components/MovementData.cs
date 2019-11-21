@@ -1,5 +1,6 @@
 using System;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Enemies.Unity_ECS
@@ -9,7 +10,14 @@ namespace Enemies.Unity_ECS
     {
         public float Speed;
         public Vector3 Direction;
+
+        public bool IsMoving()
+        {
+            var isMoving = Speed > 0;
+            return isMoving;
+        }
     }
     
+    [Serializable]
     public class MovementComponent : ComponentDataProxy<MovementData> { }
 }

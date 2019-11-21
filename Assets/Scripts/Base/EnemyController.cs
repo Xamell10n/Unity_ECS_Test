@@ -1,4 +1,8 @@
+using Enemies.Unity_ECS;
 using Enemies.Update;
+using Unity.Collections;
+using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 using Zenject;
 
@@ -69,7 +73,30 @@ namespace Enemies
                 entity.AddView(result.gameObject);
                 entity.AddMovementState(0);
                 var position = result.transform.position;
-                entity.AddPosition(position.x, position.y, position.z);
+                entity.AddPositionVector(position);
+                return result;
+            }
+        }
+        
+        public class UnityECSFactory : Factory
+        {
+            private readonly EntityManager _entityManager;
+
+            public UnityECSFactory
+            (
+                Data data,
+                EntityManager entityManager
+            ) : base(data)
+            {
+                _entityManager = entityManager;
+            }
+
+            public override EnemyController Create()
+            {
+                var result = base.Create();
+                var entity = _entityManager.Instantiate(result.gameObject);
+                _entityManager.AddComponent<MovementStateData>(entity);
+                _entityManager.AddComponent<Translation>(entity);
                 return result;
             }
         }

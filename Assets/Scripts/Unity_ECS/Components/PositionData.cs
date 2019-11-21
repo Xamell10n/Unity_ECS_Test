@@ -10,5 +10,6 @@ namespace Enemies.Unity_ECS
         public Vector3 Value;
     }
     
+    [Serializable]
     public class PositionComponent : ComponentDataProxy<PositionData> { }
 }

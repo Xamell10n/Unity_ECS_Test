@@ -8,6 +8,11 @@ namespace Enemies.Unity_ECS.Systems
     {
         public struct ChangeViewPositionJob : IJobParallelForTransform
         {
+            public struct Data
+            {
+                
+            }
+            
             public void Execute(int index, TransformAccess transform)
             {
                 
