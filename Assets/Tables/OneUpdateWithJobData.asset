@@ -29,5 +29,5 @@ MonoBehaviour:
       _min: 0
       _max: 3
   _cameraData:
-    StartPosition: {x: 0, y: 20, z: 0}
+    StartPosition: {x: 0, y: 40, z: 0}
     StartRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}

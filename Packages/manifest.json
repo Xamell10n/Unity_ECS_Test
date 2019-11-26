@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.leopotam.ecs": "https://github.com/Leopotam/ecs.git#develop",
+    "com.leopotam.ecs-reactive": "https://github.com/Leopotam/ecs-reactive.git#develop",
+    "com.leopotam.ecs-threads": "https://github.com/Leopotam/ecs-threads.git#develop",
+    "com.leopotam.ecs-types": "https://github.com/Leopotam/ecs-types.git#develop",
+    "com.leopotam.ecs-ui": "https://github.com/Leopotam/ecs-ui.git#develop",
+    "com.leopotam.ecs-unityintegration": "https://github.com/Leopotam/ecs-unityintegration.git#develop",
     "com.unity.ads": "2.0.8",
     "com.unity.analytics": "3.3.2",
     "com.unity.collab-proxy": "1.2.16",
@@ -39,5 +45,31 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-	}
+  },
+  "lock": {
+    "com.leopotam.ecs": {
+      "hash": "960f86fa0bc5a184757d943e95a7173ffa56f52f",
+      "revision": "develop"
+    },
+    "com.leopotam.ecs-reactive": {
+      "hash": "2ab0206acc9021829cd8072225737fe5df20fa9f",
+      "revision": "develop"
+    },
+    "com.leopotam.ecs-threads": {
+      "hash": "5df3f4388fa40860c7c26ed94253ed3c2741da59",
+      "revision": "develop"
+    },
+    "com.leopotam.ecs-types": {
+      "hash": "98090c702a422c5c0759d0815ada109d1616b855",
+      "revision": "develop"
+    },
+    "com.leopotam.ecs-ui": {
+      "hash": "63df3a70dbc00fc20212b2b24190921b1433aedb",
+      "revision": "develop"
+    },
+    "com.leopotam.ecs-unityintegration": {
+      "hash": "e55c023b971c4b191776b0b4bcaf352acaffd985",
+      "revision": "develop"
+    }
+  }
 }
