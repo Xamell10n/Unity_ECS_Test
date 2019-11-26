@@ -12,7 +12,6 @@ namespace Enemies.Unity_ECS.Systems
     {
         private readonly BaseSceneContext.MovementData _data;
 
-        [Preserve]
         public ChangeMovementStateSystem
         (
             BaseSceneContext.MovementData data
@@ -21,6 +20,12 @@ namespace Enemies.Unity_ECS.Systems
             _data = data;
         }
         
+//        [BurstCompile]
+//        private struct ChangeMovementJob : IJobForEachWithEntity<MovementStateData> {
+//            
+//            public EntityCommandBuffer.Concurrent ECB;
+//            public EntityManager EntityManager;
+
         [BurstCompile]
         private struct ChangeMovementJob : IJobForEach<MovementStateData, MovementData>
         {

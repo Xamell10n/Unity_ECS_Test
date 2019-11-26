@@ -1,15 +1,17 @@
 using System;
+using NUnit.Framework;
 using UnityEngine;
 using Zenject;
 
-public class Test : IInitializable
+public class EnumTest : IInitializable
 {
     public void Initialize()
     {
         TestEnum();
     }
 
-    private void TestEnum()
+    [Test]
+    public void TestEnum()
     {
         PrintEnum<Enum1>();
         var def1 = default(Enum1);

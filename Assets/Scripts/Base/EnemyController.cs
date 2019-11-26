@@ -71,6 +71,7 @@ namespace Enemies
                 var result = base.Create();
                 var entity = _context.CreateEntity();
                 entity.AddView(result.gameObject);
+//                entity.AddWaitState(0);
                 entity.AddMovementState(0);
                 var position = result.transform.position;
                 entity.AddPositionVector(position);
@@ -94,9 +95,9 @@ namespace Enemies
             public override EnemyController Create()
             {
                 var result = base.Create();
-                var entity = _entityManager.Instantiate(result.gameObject);
-                _entityManager.AddComponent<MovementStateData>(entity);
-                _entityManager.AddComponent<Translation>(entity);
+//                var entity = _entityManager.Instantiate(result.gameObject);
+//                _entityManager.AddComponent<MovementStateData>(entity);
+//                _entityManager.AddComponent<Translation>(entity);
                 return result;
             }
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5663440668151740280}
   - component: {fileID: 5663440668151740281}
   - component: {fileID: 2513916204138818698}
+  - component: {fileID: -2502373785108510132}
   - component: {fileID: -7990783277453344501}
   m_Layer: 0
   m_Name: UnityECSEnemy
@@ -89,6 +90,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 030d3ad6360e4f87b2f4f62917726294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2502373785108510132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663440668151740285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77ecfefdf4343b6b1dfb05ea8462cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-7990783277453344501

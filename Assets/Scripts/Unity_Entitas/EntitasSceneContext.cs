@@ -11,5 +11,16 @@ public class EntitasSceneContext : BaseSceneContext
         Container.BindInterfacesAndSelfTo<EntitasGameManager>().AsSingle().NonLazy();
         Container.Bind<MovementData>().FromInstance(_movementData)
             .WhenInjectedInto<EntitasGameManager>();
+        
+    }
+
+    private void BindContexts()
+    {
+        
+    }
+
+    private void BindSystems()
+    {
+        
     }
 }

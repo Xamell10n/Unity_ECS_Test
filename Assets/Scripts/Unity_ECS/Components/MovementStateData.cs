@@ -8,7 +8,4 @@ namespace Enemies.Unity_ECS
     {
         public float FinishMovementStateTime;
     }
-    
-    [Serializable]
-    public class MovementStateComponent : ComponentDataProxy<MovementStateData> { }
 }

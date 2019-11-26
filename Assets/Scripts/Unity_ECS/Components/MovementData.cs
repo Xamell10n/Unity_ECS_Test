@@ -17,7 +17,4 @@ namespace Enemies.Unity_ECS
             return isMoving;
         }
     }
-    
-    [Serializable]
-    public class MovementComponent : ComponentDataProxy<MovementData> { }
 }

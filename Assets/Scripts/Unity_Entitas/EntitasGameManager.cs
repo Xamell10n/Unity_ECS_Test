@@ -2,6 +2,7 @@ using Enemies;
 using Enemies.Systems;
 using Entitas;
 using UnityEngine;
+using Unity_Entitas.Systems;
 using Zenject;
 
 namespace GameManagers
@@ -24,6 +25,7 @@ namespace GameManagers
             _systems = new Systems()
                 .Add(new UpdateTimeSystem(inputContext))
                 .Add(new ChangeMovementStateSystem(data, gameContext, inputContext))
+//                .Add(new MovementStateSwitcher(data, gameContext, inputContext))
                 .Add(new MovementToPositionSystem(gameContext, inputContext))
                 .Add(new ChangeViewPositionSystem(gameContext));
         }

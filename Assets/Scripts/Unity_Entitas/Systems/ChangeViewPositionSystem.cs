@@ -1,14 +1,19 @@
 using System.Collections.Generic;
 using Entitas;
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
+using UnityEngine.Jobs;
 
 public class ChangeViewPositionSystem : ReactiveSystem<GameEntity>
 {
-    public ChangeViewPositionSystem(IContext<GameEntity> context) : base(context)
-    {
-    }
+    private NativeArray<Vector3> _positionArray;
+    private TransformAccessArray _transformAccessArray;
+    private MoveJob _moveJob;
+    private JobHandle _jobHandle;
 
-    public ChangeViewPositionSystem(ICollector<GameEntity> collector) : base(collector)
+    public ChangeViewPositionSystem(IContext<GameEntity> context) : base(context)
     {
     }
 
@@ -24,9 +29,35 @@ public class ChangeViewPositionSystem : ReactiveSystem<GameEntity>
 
     protected override void Execute(List<GameEntity> entities)
     {
-        foreach (var entity in entities)
+        var length = entities.Count;
+        _transformAccessArray = new TransformAccessArray(length);
+        _positionArray = new NativeArray<Vector3>(length, Allocator.TempJob);
+        for (var i = 0; i < entities.Count; i++)
         {
-            entity.view.GameObject.transform.position = entity.positionVector.Value;
+            var entity = entities[i];
+            _transformAccessArray.Add(entity.view.GameObject.transform);
+            _positionArray[i] = entity.positionVector.Value;
+        }
+
+        _moveJob = new MoveJob
+        {
+            Positions = _positionArray
+        };
+        _jobHandle = _moveJob.Schedule(_transformAccessArray);
+        _jobHandle.Complete();
+
+        _transformAccessArray.Dispose();
+        _positionArray.Dispose();
+    }
+    
+    [BurstCompile]
+    private struct MoveJob : IJobParallelForTransform
+    {
+        [ReadOnly] public NativeArray<Vector3> Positions;
+
+        public void Execute(int index, TransformAccess transform)
+        {
+            transform.position = Positions[index];
         }
     }
 }

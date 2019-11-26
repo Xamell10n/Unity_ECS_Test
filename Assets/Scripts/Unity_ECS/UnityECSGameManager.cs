@@ -17,12 +17,15 @@ namespace Unity_ECS
         (
             EnemyController.UnityECSFactory factory,
             EntityManager entityManager,
+            BaseSceneContext.MovementData data,
             int count
         ) : base(factory, count)
         {
             _factory = factory;
             _entityManager = entityManager;
             _count = count;
+
+            _entityManager.World.CreateSystem<ChangeMovementStateSystem>(data);
         }
 
         public void Initialize()
@@ -31,12 +34,11 @@ namespace Unity_ECS
 
             for (var i = 0; i < _count; i++)
                 _factory.Create();
-            _entityManager.World.GetOrCreateSystem<ChangeMovementStateSystem>();
         }
 
         public void Tick()
         {
-            
+            _entityManager.World.GetOrCreateSystem<ChangeMovementStateSystem>().Update();
         }
     }
 }
