@@ -31,7 +31,7 @@ namespace LeoECS_MultiThreading.Systems
 
         protected override int GetMinJobSize()
         {
-            return 11000;
+            return 1100;
         }
 
         protected override int GetThreadsCount()

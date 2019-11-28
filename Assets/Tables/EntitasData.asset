@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EntitasData
   m_EditorClassIdentifier: 
   _spawnData:
-    Count: 10000
+    Count: 1000
     PrefabName: EntitasEnemy
     StartPosition: {x: 0, y: 0, z: 0}
     StartPositionDelta: {x: 10, y: 10, z: 10}
