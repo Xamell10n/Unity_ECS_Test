@@ -29,6 +29,6 @@ public static class GameComponentsLookup {
         typeof(Enemies.Components.MovementStateComponent),
         typeof(Enemies.Components.PositionVectorComponent),
         typeof(Unity_Entitas.Components.WaitStateComponent),
-        typeof(ViewComponent)
+        typeof(Enemies.Components.ViewComponent)
     };
 }
