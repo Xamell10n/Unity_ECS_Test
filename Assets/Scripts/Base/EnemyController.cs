@@ -1,10 +1,10 @@
-using Enemies.Unity_ECS;
-using Enemies.Update;
-using Unity.Collections;
+using LeoECS.Components;
+using Leopotam.Ecs;
 using Unity.Entities;
-using Unity.Transforms;
 using UnityEngine;
 using Zenject;
+using MovementStateComponent = LeoECS.Components.MovementStateComponent;
+using PositionComponent = LeoECS.Components.PositionComponent;
 
 namespace Enemies
 {
@@ -98,6 +98,30 @@ namespace Enemies
 //                var entity = _entityManager.Instantiate(result.gameObject);
 //                _entityManager.AddComponent<MovementStateData>(entity);
 //                _entityManager.AddComponent<Translation>(entity);
+                return result;
+            }
+        }
+        
+        public class LeoECSFactory : Factory
+        {
+            private readonly EcsWorld _world;
+
+            public LeoECSFactory
+            (
+                Data data,
+                [Inject(Id = "Game")] EcsWorld world
+            ) : base(data)
+            {
+                _world = world;
+            }
+
+            public override EnemyController Create()
+            {
+                var result = base.Create();
+                var entity = _world.NewEntity();
+                entity.Set<ViewComponent>().Transform = result.transform;
+                entity.Set<PositionComponent>().Value = result.transform.position;
+                entity.Set<MovementStateComponent>().FinishMovementStateTime = 0;
                 return result;
             }
         }

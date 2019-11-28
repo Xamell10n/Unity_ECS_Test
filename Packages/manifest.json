@@ -48,7 +48,7 @@
   },
   "lock": {
     "com.leopotam.ecs": {
-      "hash": "960f86fa0bc5a184757d943e95a7173ffa56f52f",
+      "hash": "7597cce5f2e3b2520324b9b5ab4e7d17757ba7fb",
       "revision": "develop"
     },
     "com.leopotam.ecs-reactive": {
